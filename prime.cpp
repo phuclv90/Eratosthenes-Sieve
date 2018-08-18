@@ -12,9 +12,9 @@ void print_usage_and_exit(int exitcode, char* execname)
 {
     std::cout <<
         "SIEVE OF ERATOSTHENES - Generate all primes up to the specified limit\n"
-        "Usage (with <limit> not less than 2):\n     " <<
+        "Usage (with <limit> not less than 2):\n    " <<
         execname << " <limit> [breakat]\nwill print all primes up to <limit>"
-                    "with a line break after every <breakat> elements\nCall with `breakat = 0` for no line break (default = 10)\n";
+                    " with a line break after every <breakat> elements\nCall with `breakat = 0` for no line break (default = 10)\n";
     exit(exitcode);
 }
 
@@ -74,12 +74,14 @@ int main(int argc, char *argv[])
     int break_at = 10;
     try {
         max_prime = std::stoi(argv[1]);
+        width     = strlen(argv[1]);
         if (argc == 3)
         {
             break_at = std::stoi(argv[2]);
-            width    = strlen(argv[1]);
             if (break_at < 0)
                 max_prime = -1;
+            else if (break_at == 0)
+                width = 0;
         }
     } catch (...) {
         max_prime = -1;
